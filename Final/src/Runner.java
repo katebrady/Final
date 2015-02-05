@@ -9,7 +9,7 @@ public class Runner
 		System.out.println(TheMan.phrase);
 		TheMan.printBlanks();
 		TheMan.askForGuess();
+		TheMan.killMan();
 		TheMan.display();
-		TheMan.printBlanks();
 		}
 	}
