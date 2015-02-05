@@ -43,6 +43,10 @@ public class TheMan
 		int randomNumber3 = (int)(Math.random()*arrayThree.length);
 		phrase = "The " + arrayOne[randomNumber] + " " + arrayTwo[randomNumber2] + " " + arrayThree[randomNumber3];
 		}
+	
+	
+	
+	
 	public static void printBlanks()
 		{
 		System.out.println(phrase);
