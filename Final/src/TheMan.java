@@ -12,6 +12,7 @@ public class TheMan
 	static String arrayThree[] = {"GOOD","HEALTHY","LIVELY","INCREDIBLE","SALTY"};
 	static String phrase;
 	static String correctGuess;
+	static String wrongGuess;
 	static int counter;
 	static int randomNumber;
 	static int randomNumber2;
@@ -71,7 +72,6 @@ public class TheMan
 			if (blankArray.contains(alphabet[i]))
 				realArray.add(alphabet[i]);
 			}
-		System.out.println(numberOfLetters);
 		}
 	public static void printBlanks()
 		{
@@ -87,12 +87,11 @@ public class TheMan
 			else 
 				System.out.print("  ");
 			}
-		System.out.println(numberOfLetters);
 		System.out.println();
 		}
 	public static void askForGuess()
 		{
-		System.out.println(realArray);
+		System.out.println(correctGuesses);
 		Scanner userInput = new Scanner(System.in);
 		System.out.println("What is your guess?");
 		guess = userInput.nextLine().toUpperCase().replace(" ","");
@@ -100,7 +99,11 @@ public class TheMan
 			{
 			if (guess.equals(alphabet[i]))
 				{
-				if (realArray.contains(guess))
+				if (correctGuesses.contains(guess))
+					{
+					wrongGuess = guess;
+					}
+				else if ((realArray.contains(guess)))
 					{
 					correctGuess = guess;
 					correctGuesses.add(correctGuess);
@@ -108,7 +111,12 @@ public class TheMan
 					}
 				}
 			}
-		if (guess.equals(correctGuess))
+		if (guess.equals(wrongGuess))
+			{
+			System.out.println("No, you already did that.");
+			counter = counter + 1;
+			}
+		else if (guess.equals(correctGuess))
 			{
 			System.out.println("Nice one!");
 			}
@@ -160,6 +168,13 @@ public class TheMan
 			man[4] = ("   /");
 			man[5] = (" \\");
 			}
+		}
+	public static void guessWholePhrase()
+		{
+		System.out.println("Would you like to guess the phrase?");
+		Scanner userInput = new Scanner(System.in);
+		phraseGuess = userInput.nextLine();
+		
 		}
 	public static void check()
 		{

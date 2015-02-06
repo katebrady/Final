@@ -15,6 +15,13 @@ public class Runner
 			TheMan.killMan();
 			TheMan.check();
 			}
-		System.out.println(":YIu");
+		if (TheMan.numberOfLetters == 1)
+			{
+			System.out.println("You win! Good job!");
+			}
+		else if (TheMan.counter == 6)
+			{
+			System.out.println("You lose. Sorry");
+			}
 		}
 	}
