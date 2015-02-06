@@ -1,18 +1,25 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 public class TheMan
 	{
-	boolean isGameOver = false;
+	static boolean isGameOver = false;
 	static String guess;
+	static int numberOfLetters;
 	static String man[] = new String [6];
-	static String arrayOne[];
-	static String arrayTwo[];
-	static String arrayThree[];
+	static String arrayOne[] = {"DOG","FAIRY","ZEBRA","PENCIL","PRETZEL"};
+	static String arrayTwo[] = {"SMELLS","LOOKS","IS","SEEMS","APPEARS"};
+	static String arrayThree[] = {"GOOD","HEALTHY","LIVELY","INCREDIBLE","SALTY"};
 	static String phrase;
 	static String correctGuess;
 	static int counter;
-	static String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+	static int randomNumber;
+	static int randomNumber2;
+	static int randomNumber3;
+	static String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 	static ArrayList  blankArray = new ArrayList();
+	static ArrayList correctGuesses = new ArrayList();
+	static ArrayList realArray = new ArrayList();
 	public static void makeArray()
 		{
 		for(int i = 0; i < man.length; i++)
@@ -33,47 +40,74 @@ public class TheMan
 		}
 	public static void choosePhrase()
 		{
-		String[] arrayOne = {"dog","fairy","zebra","pencil","pretzel"};
-		String[] arrayTwo = {"smells","looks","is","seems","appears"};
-		String[] arrayThree = {"good","healthy","lively","incredible","salty"};
-		int randomNumber = (int)(Math.random()*arrayOne.length);
-		int randomNumber2 = (int)(Math.random()*arrayTwo.length);
-		int randomNumber3 = (int)(Math.random()*arrayThree.length);
-		phrase = "The " + arrayOne[randomNumber] + " " + arrayTwo[randomNumber2] + " " + arrayThree[randomNumber3];
+		randomNumber = (int)(Math.random()*arrayOne.length);
+		randomNumber2 = (int)(Math.random()*arrayTwo.length);
+		randomNumber3 = (int)(Math.random()*arrayThree.length);
+		phrase = "THE " + arrayOne[randomNumber] + " " + arrayTwo[randomNumber2] + " " + arrayThree[randomNumber3];
+		}
+	public static void makeBlankArray()
+		{
+		blankArray.add("T");
+		blankArray.add("H");
+		blankArray.add("E");
+		String firstWord = arrayOne[randomNumber];
+		String secondWord = arrayTwo[randomNumber2];
+		String thirdWord = arrayThree[randomNumber3];
+		for (int i = 0; i < arrayOne[randomNumber].length(); i++)
+			{
+			blankArray.add(firstWord.substring(i, i+1));
+			}
+		for (int i = 0; i < arrayTwo[randomNumber2].length(); i++)
+			{
+			blankArray.add(secondWord.substring(i, i+1));
+			}
+		for (int i = 0; i < arrayThree[randomNumber3].length(); i++)
+			{
+			blankArray.add(thirdWord.substring(i, i+1));
+			}
+		Collections.sort(blankArray);
+		for (int i = 0; i < alphabet.length; i++)
+			{
+			if (blankArray.contains(alphabet[i]))
+				realArray.add(alphabet[i]);
+			}
+		System.out.println(numberOfLetters);
 		}
 	public static void printBlanks()
 		{
-		System.out.println(phrase);
-		blankArray.add(phrase);
-		for (int i; i < arrayOne.length)
-		System.out.println(blankArray);
+		numberOfLetters = realArray.size();
 		for(int i = 0; i < phrase.length(); i++)
 			{
-			if (phrase.substring(i, i+1).equals(correctGuess))	
-				System.out.print(guess);
+			if (correctGuesses.contains(phrase.substring(i, i+1)))	
+				{
+				System.out.print(phrase.substring(i, i+1));
+				}
 			else if (!phrase.substring(i, i+1).equals(" "))	
 				System.out.print("_ ");
 			else 
 				System.out.print("  ");
 			}
+		System.out.println(numberOfLetters);
 		System.out.println();
 		}
 	public static void askForGuess()
 		{
+		System.out.println(realArray);
 		Scanner userInput = new Scanner(System.in);
 		System.out.println("What is your guess?");
-		guess = userInput.nextLine();
-		for(int i = 0; i < phrase.length(); i++)
+		guess = userInput.nextLine().toUpperCase().replace(" ","");
+		for(int i = 0; i < alphabet.length; i++)
 			{
 			if (guess.equals(alphabet[i]))
 				{
-				if (phrase.contains(guess))
+				if (realArray.contains(guess))
 					{
 					correctGuess = guess;
+					correctGuesses.add(correctGuess);
+					realArray.remove(correctGuess);
 					}
 				}
 			}
-		counter = 0;
 		if (guess.equals(correctGuess))
 			{
 			System.out.println("Nice one!");
@@ -92,43 +126,52 @@ public class TheMan
 			}
 		else if (counter == 2)
 			{
-			man[0] = ("  (__)");
-			man[1] = (" || ");
+			man[0] = ("   (__)");
+			man[1] = ("  || ");
 			man[2] = ("  ");
 			}
 		else if (counter == 3)
 			{
-			man[0] = ("  (__)");
+			man[0] = ("   (__)");
 			man[1] = (" || ");
-			man[2] = ("--");
+			man[2] = (" --");
 			}
 		else if (counter == 4)
 			{
-			man[0] = ("  (__)");
+			man[0] = ("   (__)");
 			man[1] = (" || ");
-			man[2] = ("--");
+			man[2] = (" --");
 			man[3] = ("--");
 			}
 		else if (counter == 5)
 			{
-			man[0] = ("  (__)");
+			man[0] = ("   (__)");
 			man[1] = (" || ");
-			man[2] = ("--");
+			man[2] = (" --");
 			man[3] = ("--");
-			man[4] = ("  /");
+			man[4] = ("   /");
 			}
 		else if (counter == 6)
 			{
-			man[0] = ("  (__)");
-			man[1] = (" || ");
+			man[0] = ("   (__)");
+			man[1] = ("  || ");
 			man[2] = ("--");
 			man[3] = ("--");
-			man[4] = ("  /");
+			man[4] = ("   /");
 			man[5] = (" \\");
 			}
 		}
 	public static void check()
 		{
+		if (numberOfLetters == 1)
+			{
+			isGameOver = true;
+			}
+		if (counter == 6)
+			{
+			display();
+			isGameOver = true;
+			}
 		}
 	}
 	
