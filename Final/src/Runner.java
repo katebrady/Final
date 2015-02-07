@@ -6,14 +6,17 @@ public class Runner
 		TheMan.makeArray();
 		TheMan.choosePhrase();
 		TheMan.makeBlankArray();
+		TheMan.display();
+		TheMan.printBlanks();
 		while (!TheMan.isGameOver) 
 			{			
-			TheMan.display();
 			System.out.println(TheMan.phrase);
-			TheMan.printBlanks();
 			TheMan.askForGuess();
+			TheMan.display();
 			TheMan.killMan();
 			TheMan.check();
+			TheMan.printBlanks();
+			TheMan.guessWholePhrase();
 			}
 		if (TheMan.numberOfLetters == 1)
 			{
@@ -23,5 +26,7 @@ public class Runner
 			{
 			System.out.println("You lose. Sorry");
 			}
+		else 
+			System.out.println("YOu guessed it");
 		}
 	}

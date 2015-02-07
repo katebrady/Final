@@ -17,10 +17,12 @@ public class TheMan
 	static int randomNumber;
 	static int randomNumber2;
 	static int randomNumber3;
+	static String phraseGuess;
 	static String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 	static ArrayList  blankArray = new ArrayList();
 	static ArrayList correctGuesses = new ArrayList();
 	static ArrayList realArray = new ArrayList();
+	static ArrayList anotherArray = new ArrayList();
 	public static void makeArray()
 		{
 		for(int i = 0; i < man.length; i++)
@@ -65,6 +67,10 @@ public class TheMan
 		for (int i = 0; i < arrayThree[randomNumber3].length(); i++)
 			{
 			blankArray.add(thirdWord.substring(i, i+1));
+			}
+		for (int i = 0; i < blankArray.size(); i++)
+			{
+			anotherArray.add(blankArray.get(i));
 			}
 		Collections.sort(blankArray);
 		for (int i = 0; i < alphabet.length; i++)
@@ -174,7 +180,30 @@ public class TheMan
 		System.out.println("Would you like to guess the phrase?");
 		Scanner userInput = new Scanner(System.in);
 		phraseGuess = userInput.nextLine();
-		
+		if (phraseGuess.equalsIgnoreCase("yes"))
+			{
+			takeWholeGuess();
+			}
+		}
+	public static void takeWholeGuess()
+		{
+		int counter2 = 0;
+		Scanner userInput = new Scanner(System.in);
+		System.out.println("What do you think the phrase is?");
+		String guessedPhrase = userInput.nextLine();
+		guessedPhrase = guessedPhrase.toUpperCase().replace(" ","");
+		for (int i = 0; i < anotherArray.size(); i++)
+			{
+			System.out.println(anotherArray.get(i) + guessedPhrase.substring(i,i+1));
+			if (anotherArray.get(i).equals(guessedPhrase.substring(i,i+1)))
+				{
+				counter2++;
+				}
+			}
+		System.out.println(counter2);
+		System.out.println(anotherArray.size());
+		if  (counter2 == anotherArray.size())
+			isGameOver = true;
 		}
 	public static void check()
 		{
