@@ -3,6 +3,9 @@ public class Runner
 	{
 	public static void main(String[] args)
 		{
+		PlayerWord.playerChoosesWord();
+		PlayerWord.printPlayerBlanks();
+		System.out.println();
 		TheMan.makeArray();
 		TheMan.choosePhrase();
 		TheMan.makeBlankArray();
@@ -12,13 +15,13 @@ public class Runner
 			{			
 			System.out.println(TheMan.phrase);
 			TheMan.askForGuess();
-			TheMan.display();
 			TheMan.killMan();
+			TheMan.display();
 			TheMan.check();
 			TheMan.printBlanks();
-			TheMan.guessWholePhrase();
+			
 			}
-		if (TheMan.numberOfLetters == 1)
+		if (TheMan.numberOfLetters == 0)
 			{
 			System.out.println("You win! Good job!");
 			}
