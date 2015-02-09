@@ -8,7 +8,7 @@ public class PlayerWord
 	public static void playerChoosesWord ()
 		{
 		Scanner userInput = new Scanner(System.in);
-		System.out.println("How many words is your phrase?");
+		System.out.println("How many words are in your phrase?");
 		int words = userInput.nextInt();
 		for (int i = 0; i < words; i++)
 			{
@@ -28,5 +28,7 @@ public class PlayerWord
 				}
 			System.out.print("  ");
 			}
+		System.out.println("");
 		}
+	
 	}	

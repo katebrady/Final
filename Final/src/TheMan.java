@@ -3,6 +3,7 @@ import java.util.Collections;
 import java.util.Scanner;
 public class TheMan
 	{
+	static ArrayList  blankArray = new ArrayList();
 	static boolean isGameOver = false;
 	static String guess;
 	static int numberOfLetters;
@@ -10,16 +11,12 @@ public class TheMan
 	static String arrayOne[] = {"DOG","FAIRY","ZEBRA","PENCIL","PRETZEL"};
 	static String arrayTwo[] = {"SMELLS","LOOKS","IS","SEEMS","APPEARS"};
 	static String arrayThree[] = {"GOOD","HEALTHY","LIVELY","INCREDIBLE","SALTY"};
-	static String phrase;
 	static String correctGuess;
 	static String wrongGuess;
 	static int counter;
-	static int randomNumber;
-	static int randomNumber2;
-	static int randomNumber3;
 	static String phraseGuess;
 	static String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
-	static ArrayList  blankArray = new ArrayList();
+	
 	static ArrayList correctGuesses = new ArrayList();
 	static ArrayList realArray = new ArrayList();
 	static ArrayList anotherArray = new ArrayList();
@@ -41,32 +38,22 @@ public class TheMan
 		System.out.println("|_________");
 		System.out.println();
 		}
-	public static void choosePhrase()
-		{
-		randomNumber = (int)(Math.random()*arrayOne.length);
-		randomNumber2 = (int)(Math.random()*arrayTwo.length);
-		randomNumber3 = (int)(Math.random()*arrayThree.length);
-		phrase = "THE " + arrayOne[randomNumber] + " " + arrayTwo[randomNumber2] + " " + arrayThree[randomNumber3];
-		}
 	public static void makeBlankArray()
 		{
-		blankArray.add("T");
-		blankArray.add("H");
-		blankArray.add("E");
-		String firstWord = arrayOne[randomNumber];
-		String secondWord = arrayTwo[randomNumber2];
-		String thirdWord = arrayThree[randomNumber3];
-		for (int i = 0; i < arrayOne[randomNumber].length(); i++)
+		String first = Phrase.phrase.get(Phrase.randomNumber).getFirstWord();
+		String second = Phrase.phrase.get(Phrase.randomNumber2).getSecondWord();
+		String third =  Phrase.phrase.get(Phrase.randomNumber3).getThirdWord();
+		for (int i = 0; i < first.length(); i++)
 			{
-			blankArray.add(firstWord.substring(i, i+1));
+			blankArray.add(first.substring(i, i+1));
 			}
-		for (int i = 0; i < arrayTwo[randomNumber2].length(); i++)
+		for (int i = 0; i < second.length(); i++)
 			{
-			blankArray.add(secondWord.substring(i, i+1));
+			blankArray.add(second.substring(i, i+1));
 			}
-		for (int i = 0; i < arrayThree[randomNumber3].length(); i++)
+		for (int i = 0; i < third.length(); i++)
 			{
-			blankArray.add(thirdWord.substring(i, i+1));
+			blankArray.add(third.substring(i, i+1));
 			}
 		for (int i = 0; i < blankArray.size(); i++)
 			{
@@ -82,13 +69,13 @@ public class TheMan
 	public static void printBlanks()
 		{
 		numberOfLetters = realArray.size();
-		for(int i = 0; i < phrase.length(); i++)
+		for(int i = 0; i < Phrase.thePhrase.length(); i++)
 			{
-			if (correctGuesses.contains(phrase.substring(i, i+1)))	
+			if (correctGuesses.contains(Phrase.thePhrase.substring(i, i+1)))	
 				{
-				System.out.print(phrase.substring(i, i+1));
+				System.out.print(Phrase.thePhrase.substring(i, i+1));
 				}
-			else if (!phrase.substring(i, i+1).equals(" "))	
+			else if (!Phrase.thePhrase.substring(i, i+1).equals(" "))	
 				System.out.print("_ ");
 			else 
 				System.out.print("  ");
@@ -177,12 +164,15 @@ public class TheMan
 		}
 	public static void guessWholePhrase()
 		{
-		System.out.println("Would you like to guess the phrase?");
-		Scanner userInput = new Scanner(System.in);
-		phraseGuess = userInput.nextLine();
-		if (phraseGuess.equalsIgnoreCase("yes"))
+		if (!(numberOfLetters == 1))
 			{
-			takeWholeGuess();
+			System.out.println("Would you like to guess the entire phrase?");
+			Scanner userInput = new Scanner(System.in);
+			phraseGuess = userInput.nextLine();
+			if (phraseGuess.equalsIgnoreCase("yes"))
+				{
+					takeWholeGuess();
+				}
 			}
 		}
 	public static void takeWholeGuess()
