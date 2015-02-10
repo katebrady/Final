@@ -163,7 +163,7 @@ public class TheMan
 		}
 	public static void guessWholePhrase()
 		{
-		if (!(numberOfLetters == 0))
+		if (!(numberOfLetters == 0) && !(counter == 6))
 			{
 			System.out.println("Would you like to guess the entire phrase?");
 			Scanner userInput = new Scanner(System.in);
@@ -211,7 +211,6 @@ public class TheMan
 			}
 		if (counter == 6)
 			{
-			display();
 			isGameOver = true;
 			}
 		}
