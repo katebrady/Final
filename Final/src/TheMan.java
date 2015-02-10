@@ -68,7 +68,6 @@ public class TheMan
 		}
 	public static void printBlanks()
 		{
-		numberOfLetters = realArray.size();
 		for(int i = 0; i < Phrase.thePhrase.length(); i++)
 			{
 			if (correctGuesses.contains(Phrase.thePhrase.substring(i, i+1)))	
@@ -164,14 +163,14 @@ public class TheMan
 		}
 	public static void guessWholePhrase()
 		{
-		if (!(numberOfLetters == 1))
+		if (!(numberOfLetters == 0))
 			{
 			System.out.println("Would you like to guess the entire phrase?");
 			Scanner userInput = new Scanner(System.in);
 			phraseGuess = userInput.nextLine();
 			if (phraseGuess.equalsIgnoreCase("yes"))
 				{
-					takeWholeGuess();
+				takeWholeGuess();
 				}
 			}
 		}
@@ -184,20 +183,29 @@ public class TheMan
 		guessedPhrase = guessedPhrase.toUpperCase().replace(" ","");
 		for (int i = 0; i < anotherArray.size(); i++)
 			{
-			System.out.println(anotherArray.get(i) + guessedPhrase.substring(i,i+1));
-			if (anotherArray.get(i).equals(guessedPhrase.substring(i,i+1)))
+			for (int j = 0; j < guessedPhrase.length() - 1; j++)
 				{
-				counter2++;
+				if (anotherArray.get(i).equals(guessedPhrase.substring(j, j+1)))
+					{
+					counter2 = counter2 + 1;
+					}
 				}
 			}
-		System.out.println(counter2);
-		System.out.println(anotherArray.size());
 		if  (counter2 == anotherArray.size())
 			isGameOver = true;
+		else
+			{
+			System.out.println("Nope, Sorry!");
+			counter = counter + 1;
+			TheMan.killMan();
+			TheMan.display();
+			TheMan.printBlanks();
+			}
 		}
 	public static void check()
 		{
-		if (numberOfLetters == 1)
+		numberOfLetters = realArray.size();
+		if (numberOfLetters == 0)
 			{
 			isGameOver = true;
 			}

@@ -4,6 +4,7 @@ public class Runner
 	public static void main(String[] args)
 		{
 		Phrase.stuff();
+		System.out.println(Phrase.thePhrase);
 		System.out.println();
 		TheMan.makeArray();
 		TheMan.makeBlankArray();
