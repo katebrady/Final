@@ -14,12 +14,13 @@ public class TheMan
 	static String correctGuess;
 	static String wrongGuess;
 	static int counter;
+	static int counter3;
 	static String phraseGuess;
 	static String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
-	
 	static ArrayList correctGuesses = new ArrayList();
 	static ArrayList realArray = new ArrayList();
 	static ArrayList anotherArray = new ArrayList();
+	static ArrayList wholeGuessArray = new ArrayList();
 	public static void makeArray()
 		{
 		for(int i = 0; i < man.length; i++)
@@ -83,10 +84,15 @@ public class TheMan
 		}
 	public static void askForGuess()
 		{
-		System.out.println(correctGuesses);
+		System.out.println();
+		if (! (counter3 == 0))
+			{
+			System.out.println("These are the letters you have already guessed: " + correctGuesses);
+			}
 		Scanner userInput = new Scanner(System.in);
 		System.out.println("What is your guess?");
 		guess = userInput.nextLine().toUpperCase().replace(" ","");
+		counter3++;
 		for(int i = 0; i < alphabet.length; i++)
 			{
 			if (guess.equals(alphabet[i]))
@@ -165,7 +171,7 @@ public class TheMan
 		{
 		if (!(numberOfLetters == 0) && !(counter == 6))
 			{
-			System.out.println("Would you like to guess the entire phrase?");
+			System.out.println("Would you like to guess the entire phrase? If so, type yes. If not, just hit enter.");
 			Scanner userInput = new Scanner(System.in);
 			phraseGuess = userInput.nextLine();
 			if (phraseGuess.equalsIgnoreCase("yes"))
@@ -181,14 +187,16 @@ public class TheMan
 		System.out.println("What do you think the phrase is?");
 		String guessedPhrase = userInput.nextLine();
 		guessedPhrase = guessedPhrase.toUpperCase().replace(" ","");
-		for (int i = 0; i < anotherArray.size(); i++)
+		
+		for (int i = 0; i < guessedPhrase.length(); i++)
 			{
-			for (int j = 0; j < guessedPhrase.length() - 1; j++)
+			wholeGuessArray.add(guessedPhrase.substring(i,i+1));
+			}
+		for (int i = 0; i < wholeGuessArray.size(); i++)
+			{
+			if (wholeGuessArray.get(i).equals(anotherArray.get(i)))
 				{
-				if (anotherArray.get(i).equals(guessedPhrase.substring(j, j+1)))
-					{
-					counter2 = counter2 + 1;
-					}
+				counter2++;
 				}
 			}
 		if  (counter2 == anotherArray.size())
@@ -213,6 +221,18 @@ public class TheMan
 			{
 			isGameOver = true;
 			}
+		}
+	public static void greetUser()
+		{
+		Scanner userInput = new Scanner(System.in);
+		System.out.println("Hello there! What is your name?");
+		String playerName = userInput.nextLine();
+		String greetArray[] = {"You look so good today!", "You are glowing today!",
+					"You are looking lovely as always!","Wow, your skin looks flawless!",
+					"I love that shirt!","Did you do something with your hair? It looks great!",
+					"You have such a beautiful smile!"};
+		int randomNumber = (int)(Math.random()*greetArray.length);
+		System.out.println("Hello " + playerName + "! " + greetArray[randomNumber] + " Let's play Hangman! You have six guesses before your man dies. Good luck!");
 		}
 	}
 	

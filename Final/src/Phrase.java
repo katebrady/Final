@@ -41,7 +41,7 @@ public class Phrase
 		{
 			this.thirdWord = thirdWord;
 		}
-	public static void stuff()
+	public static void createPhrase()
 		{
 		phrase.add(new Phrase ("DAN","LOOKS", "WONDERFUL"));
 		phrase.add(new Phrase ("SARAH","SEEMS","NICE"));

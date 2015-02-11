@@ -3,14 +3,15 @@ public class Runner
 	{
 	public static void main(String[] args)
 		{
-		Phrase.stuff();
+		TheMan.greetUser();
+		Phrase.createPhrase();
 		System.out.println();
 		TheMan.makeArray();
 		TheMan.makeBlankArray();
 		TheMan.display();
 		TheMan.printBlanks();
 		while (!TheMan.isGameOver) 
-			{			
+			{
 			TheMan.askForGuess();
 			TheMan.killMan();
 			TheMan.display();
@@ -27,6 +28,6 @@ public class Runner
 			System.out.println("You lose. Sorry. The phrase was: " + Phrase.thePhrase.substring(0,1) + Phrase.thePhrase.substring(1,Phrase.thePhrase.length()).toLowerCase());
 			}
 		else 
-			System.out.println("YOu guessed it");
+			System.out.println("You guessed it! You win! Good job!");
 		}
 	}
