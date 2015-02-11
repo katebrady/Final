@@ -232,7 +232,7 @@ public class TheMan
 					"I love that shirt!","Did you do something with your hair? It looks great!",
 					"You have such a beautiful smile!"};
 		int randomNumber = (int)(Math.random()*greetArray.length);
-		System.out.println("Hello " + playerName + "! " + greetArray[randomNumber] + " Let's play Hangman! You have six guesses before your man dies. Good luck!");
+		System.out.println("Hello " + playerName + "! " + greetArray[randomNumber] + " Let's play Hangman! You have six wrong guesses before your man dies. Good luck!");
 		}
 	}
 	
